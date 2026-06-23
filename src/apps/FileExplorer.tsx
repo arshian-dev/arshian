@@ -5,13 +5,43 @@ import type { Project } from '../data/portfolio';
 
 export default function FileExplorer() {
   const [selectedProject, setSelectedProject] = useState<Project>(portfolioData.projects[0]);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   return (
-    <div className="flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-px bg-brutal-border min-h-0">
+    <div className="flex-1 w-full flex flex-col lg:grid lg:grid-cols-12 bg-brutal-border min-h-0 relative">
+      {/* Mobile Toggle Button */}
+      <div className="lg:hidden p-3 border-b border-brutal-border bg-brutal-canvas shrink-0">
+        <button 
+          onClick={() => setIsMobileSidebarOpen(true)}
+          className="text-xs font-mono border border-brutal-border px-4 py-2 text-zinc-300 hover:bg-[#1a1a1a] flex items-center gap-2"
+        >
+          <span className="text-brutal-crimson font-bold">[=]</span> DIRECTORY INDEX
+        </button>
+      </div>
+
+      {/* Mobile Backdrop Overlay */}
+      {isMobileSidebarOpen && (
+        <div 
+          className="absolute inset-0 bg-black/60 z-40 lg:hidden"
+          onClick={() => setIsMobileSidebarOpen(false)}
+        />
+      )}
+
       {/* Directory File Index Sidebar */}
-      <div className="bg-brutal-canvas lg:col-span-4 p-4 flex flex-col overflow-y-auto select-none">
-        <div className="text-xs font-mono text-brutal-textMuted uppercase tracking-widest mb-4 px-2">
-          Index // System Directory
+      <div className={`
+        ${isMobileSidebarOpen ? 'absolute inset-y-0 left-0 w-[85%] max-w-sm z-50 flex shadow-[20px_0_50px_rgba(0,0,0,0.9)]' : 'hidden'} 
+        lg:static lg:flex lg:col-span-4 bg-brutal-canvas p-4 flex-col overflow-y-auto select-none border-r border-brutal-border
+      `}>
+        <div className="flex justify-between items-center mb-4 px-2">
+          <div className="text-xs font-mono text-brutal-textMuted uppercase tracking-widest">
+            Index // System Directory
+          </div>
+          <button 
+            className="lg:hidden text-brutal-crimson hover:text-white font-bold text-xl leading-none transition-colors"
+            onClick={() => setIsMobileSidebarOpen(false)}
+          >
+            ×
+          </button>
         </div>
         <div className="space-y-0.5">
           {portfolioData.projects.map((project) => {
@@ -19,7 +49,10 @@ export default function FileExplorer() {
             return (
               <button
                 key={project.id}
-                onClick={() => setSelectedProject(project)}
+                onClick={() => {
+                  setSelectedProject(project);
+                  setIsMobileSidebarOpen(false);
+                }}
                 className={`w-full flex items-center justify-between px-3 py-2 text-left font-mono text-sm border transition-all duration-150 rounded-none group ${
                   isSelected
                     ? 'bg-[#221010] border-brutal-crimson text-white'
@@ -40,7 +73,7 @@ export default function FileExplorer() {
       </div>
 
       {/* Target Content Inspector Panel */}
-      <div className="bg-brutal-surface lg:col-span-8 p-6 flex flex-col overflow-y-auto h-[350px] lg:h-full border-t lg:border-t-0 border-brutal-border">
+      <div className="bg-brutal-surface lg:col-span-8 p-6 flex flex-col overflow-y-auto flex-1 lg:h-full border-t lg:border-t-0 border-brutal-border">
         {/* Project Metadata Header Frame */}
         <div className="border border-brutal-border bg-[#161616] p-4 font-mono text-sm mb-4 grid grid-cols-2 sm:grid-cols-3 gap-2 text-zinc-400 select-none">
           <div><span className="text-zinc-600">ID:</span> <span className="text-zinc-200">{selectedProject.id.toUpperCase()}</span></div>

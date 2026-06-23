@@ -3,9 +3,16 @@ import TerminalShell from './apps/TerminalShell';
 import MarkdownWorkspace from './apps/MarkdownWorkspace';
 import FileExplorer from './apps/FileExplorer';
 import { useSystemStore } from './store/useSystemStore';
+import MobileLayout from './components/MobileLayout';
+import { useIsMobile } from './hooks/useIsMobile';
 
 export default function App() {
   const { isBooting } = useSystemStore();
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return <MobileLayout />;
+  }
 
   return (
     <main className={`bg-brutal-canvas w-screen h-screen overflow-hidden relative selection:bg-brutal-crimson selection:text-white ${isBooting ? 'scanlines animate-boot-glow' : ''}`}>
