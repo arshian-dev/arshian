@@ -73,7 +73,7 @@ export default function FileExplorer() {
       </div>
 
       {/* Target Content Inspector Panel */}
-      <div className="bg-brutal-surface lg:col-span-8 p-6 flex flex-col overflow-y-auto flex-1 lg:h-full border-t lg:border-t-0 border-brutal-border">
+      <div className="bg-brutal-surface lg:col-span-8 p-4 lg:p-6 flex flex-col overflow-y-auto flex-1 lg:h-full border-t lg:border-t-0 border-brutal-border">
         {/* Project Metadata Header Frame */}
         <div className="border border-brutal-border bg-[#161616] p-4 font-mono text-sm mb-4 grid grid-cols-2 sm:grid-cols-3 gap-2 text-zinc-400 select-none">
           <div><span className="text-zinc-600">ID:</span> <span className="text-zinc-200">{selectedProject.id.toUpperCase()}</span></div>
@@ -95,7 +95,7 @@ export default function FileExplorer() {
             <img 
               src={selectedProject.image} 
               alt={`${selectedProject.name} screenshot`} 
-              className="w-full h-auto object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+              className="w-full h-[280px] sm:h-[350px] lg:h-auto object-cover object-top grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
               onError={(e) => {
                 // Hide the container if the image fails to load
                 (e.currentTarget.parentNode as HTMLDivElement).style.display = 'none';

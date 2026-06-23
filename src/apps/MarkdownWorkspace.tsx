@@ -5,7 +5,7 @@ export default function MarkdownWorkspace() {
   return (
     <div className="flex-1 w-full grid grid-cols-1 lg:grid-cols-2 gap-px bg-brutal-border min-h-0">
       {/* Code Editor Viewport Pane */}
-      <div className="bg-brutal-canvas p-6 flex flex-col h-full overflow-hidden">
+      <div className="hidden lg:flex bg-brutal-canvas p-6 flex-col h-full overflow-hidden">
         <div className="flex items-center justify-between mb-3 border-b border-brutal-border pb-2 text-xs font-mono text-brutal-textMuted select-none">
           <span>SOURCE // resume_raw.md</span>
           <span className="text-zinc-500">LN 1, COL 1 // UTF-8</span>
