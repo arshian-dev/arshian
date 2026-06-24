@@ -96,13 +96,9 @@ export default function TerminalShell() {
         break;
 
       case 'about':
-        newLines.push(
-          { text: "ARSHIAN ALI // Full-Stack Software Engineer & AI Specialist", type: 'success' },
-          { text: "-----------------------------------------------------------", type: 'system' },
-          { text: "Focus: Artificial Intelligence, local-first system architectures, and intelligent web applications.", type: 'output' },
-          { text: "Currently: Full-Stack Intern at Coding The Brains, building real-time CV pipelines and multi-tier apps.", type: 'output' },
-          { text: "Philosophy: Engineering complex platforms with absolute optimization, robust data pipelines, and zero bloated container overhead.", type: 'output' }
-        );
+        newLines.push({ text: "LOADING DEVICE_INFO SUBSYSTEM...", type: 'success' });
+        openWindow('about');
+        bringToFront('about');
         break;
 
       case 'resume':

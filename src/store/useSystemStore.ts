@@ -33,9 +33,10 @@ const getCenter = (width: number, height: number, offset = 0) => {
 };
 
 const DEFAULT_WINDOWS: Record<string, WindowState> = {
-  terminal: { id: 'terminal', isOpen: true, ...getCenter(700, 480), width: 700, height: 480, zIndex: 10 },
-  resume: { id: 'resume', isOpen: false, ...getCenter(1000, 700, 20), width: 1000, height: 700, zIndex: 11 },
-  projects: { id: 'projects', isOpen: false, ...getCenter(1000, 700, 40), width: 1000, height: 700, zIndex: 12 },
+  about: { id: 'about', isOpen: false, ...getCenter(750, 550, 10), width: 750, height: 550, zIndex: 10 },
+  terminal: { id: 'terminal', isOpen: true, ...getCenter(700, 480), width: 700, height: 480, zIndex: 11 },
+  resume: { id: 'resume', isOpen: false, ...getCenter(1000, 700, 20), width: 1000, height: 700, zIndex: 12 },
+  projects: { id: 'projects', isOpen: false, ...getCenter(1000, 700, 40), width: 1000, height: 700, zIndex: 13 },
 };
 
 export const useSystemStore = create<SystemState>((set, get) => ({

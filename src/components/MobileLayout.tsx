@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import TerminalShell from '../apps/TerminalShell';
 import MarkdownWorkspace from '../apps/MarkdownWorkspace';
 import FileExplorer from '../apps/FileExplorer';
+import AboutWindow from '../apps/AboutWindow';
 import { useSystemStore } from '../store/useSystemStore';
 
-type AppId = 'terminal' | 'resume' | 'projects' | null;
+type AppId = 'terminal' | 'about' | 'resume' | 'projects' | null;
 
 export default function MobileLayout() {
   const [activeApp, setActiveApp] = useState<AppId>(null);
@@ -62,6 +63,15 @@ export default function MobileLayout() {
               </button>
 
               <button 
+                onClick={() => setActiveApp('about')}
+                className="w-full max-w-[300px] border border-brutal-border bg-[#111] hover:bg-[#1a1a1a] transition-all p-6 flex flex-col items-center gap-3 group"
+              >
+                <div className="text-4xl text-zinc-500 group-hover:text-brutal-crimson transition-colors">👤</div>
+                <div className="text-sm text-zinc-200 tracking-wider">device_info.exe</div>
+                <div className="text-[10px] text-zinc-600">SYSTEM PROFILER</div>
+              </button>
+
+              <button 
                 onClick={() => setActiveApp('projects')}
                 className="w-full max-w-[300px] border border-brutal-border bg-[#111] hover:bg-[#1a1a1a] transition-all p-6 flex flex-col items-center gap-3 group"
               >
@@ -77,6 +87,7 @@ export default function MobileLayout() {
           )}
 
           {activeApp === 'terminal' && <TerminalShell />}
+          {activeApp === 'about' && <AboutWindow />}
           {activeApp === 'resume' && <MarkdownWorkspace />}
           {activeApp === 'projects' && <FileExplorer />}
         </div>

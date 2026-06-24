@@ -2,6 +2,7 @@ import WindowFrame from './components/WindowFrame';
 import TerminalShell from './apps/TerminalShell';
 import MarkdownWorkspace from './apps/MarkdownWorkspace';
 import FileExplorer from './apps/FileExplorer';
+import AboutWindow from './apps/AboutWindow';
 import { useSystemStore } from './store/useSystemStore';
 import MobileLayout from './components/MobileLayout';
 import { useIsMobile } from './hooks/useIsMobile';
@@ -32,6 +33,10 @@ export default function App() {
         <div className="pointer-events-auto h-full w-full">
           <WindowFrame id="terminal" title="sys_init_shell.sh">
             <TerminalShell />
+          </WindowFrame>
+
+          <WindowFrame id="about" title="device_info.exe">
+            <AboutWindow />
           </WindowFrame>
 
           <WindowFrame id="resume" title="resume_workspace.app">
